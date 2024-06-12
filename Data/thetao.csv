@@ -1,0 +1,28 @@
+# Credits: EU Copernicus Marine Service information - https://marine.copernicus.eu
+# Product: NWSHELF_MULTIYEAR_PHY_004_009
+# Dataset: cmems_mod_nws_phy-t_my_7km-3D_P1D-m
+# Variable: Sea water potential temperature (thetao) degrees_C
+# Geometry: POINT(-15.77969232952816 48.86608354177735)
+# Values from graph: v(z): value vs. depth
+# Date: 30/06/2022 12:00
+
+depth,thetao
+0,15.089999
+3,15.030999
+10,14.933
+15,14.921
+20,14.919
+30,14.917999
+50,14.292
+75,13.037
+100,12.516999
+125,12.148999
+150,11.94
+200,11.740999
+250,11.566999
+300,11.402999
+400,11.041999
+500,10.5859995
+600,10.075999
+750,9.268
+1000,7.4839993
