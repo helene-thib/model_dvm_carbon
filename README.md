@@ -1,2 +1,2 @@
 # model_dvm_carbon
-Accompanying code from modeling micronekton DVM and carbon production
+Accompanying code for modelling micronekton DVM and carbon production.
