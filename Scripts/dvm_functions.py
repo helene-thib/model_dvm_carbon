@@ -10,7 +10,7 @@ path_to_plot = Path('~/model_dvm_carbon/Plots').expanduser()
 
 
 ## Irradiance function from J-C Poggiale.
-def I_sinusF(t, n=25, a=200): #n=25
+def I_sinusF(t, n=25, a=200):
     T = 48
     omega = (2 * np.pi) / T
     I0 = 1 - (np.exp(-a * np.sin(omega * t)**n)) + 0.5
@@ -73,12 +73,11 @@ def RMR_func(CW, T, D, a0, a1, a2, a3, RQ): #CW in mgC, T in K, D for depth in m
     R = Rmc/(CW*1000) #in h-1
     return R
 
-
 #Van't Hoff equation for the growth rate of copepods
 def vant_hoff(Tc):
-    Qdix = 2
-    Tref = 12 #reference temperature in °C
-    Rref = 0.0062 #reference growth rate in h-1
+    Qdix = 3
+    Tref = 15 #reference temperature in °C
+    Rref = 0.008 #reference growth rate in h-1
     r = Qdix ** ((Tc - Tref) / 10) * Rref
     return r
 
@@ -116,26 +115,6 @@ def speedF(Nt12, dt_inf, vmax):
         V[t] = vmax * dI_r[t] / dI_r_max
         plot_time24.append(t)
     return V #m/h
-
-#Stokes equation to estimate de sinking speed of fish fecal pellets
-def stokes_sinking_func(ww): #ww in g
-    Rfp = 1.25  # density of fecal pellets
-
-    #Calculation of the volume of a fish FP from its weight
-    m_fp = np.exp(0.9104 + 0.0088 * np.log(ww)) #in mg
-    Vfp_cm3 = (m_fp*1e-3) / Rfp #in cm3
-
-    #Vfp = (10**4.547) * (cw**0.9)  # From Mauchline, 1998 for calanoids copepods in µm3, cw in µgC
-    #Vfp_cm3 = Vfp / 1e12
-
-    D = ((6*Vfp_cm3)/np.pi)**(1/3)
-    mu = 0.0123
-    Rs = 1.025 #density of seawater, depends on temperature ! Values calculated from Yoon et al. 2000 at 18.1°C
-    g = 981 #acceleration due to gravity
-    L = D*6
-    Ws = 0.0790 * (1/mu) * np.abs(Rs - Rfp) * g * L**2 * (L/D)**(-1.664)
-    Ws_m = (Ws/100)*3600
-    return Vfp_cm3, Ws_m #in m h-1
 
 
 @jit(nopython=True)
