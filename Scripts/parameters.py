@@ -36,7 +36,6 @@ vmax = swimming_speed_func(L*0.1, bm_id) #in m/h
 w_ref = vmax/2
 
 dt_sup = 0.05
-#dt_save = 0.1
 dt_save = 0.8
 tmax = 24 * 334 #For season: 24*334
 
@@ -58,10 +57,9 @@ Nt12 = len(time12)
 # The relative gradient of light is computed
 V = speedF(Nt12, dt_inf, vmax)
 
-coef_alpha = 3
+#Choose coef_alpha depending on the seasonal scenario
+coef_alpha = 0.02
 
-#beta = 1
-#beta = 0.001
 beta = 0.01
 rho = 0.0062 # SEE Jager et Ravagnan 2016
 Frac_PP_Z = 0.32
@@ -69,7 +67,7 @@ Frac_PP_Z = 0.32
 Csda = 0.175
 
 # Initial conditions !! Concentration of consumer and their resource NEEDS TO BE IN CARBON WEIGHT (mg C m-3 h-1)
-NPPi = 10 #34
+NPPi = 10
 Ki = NPPi * Frac_PP_Z
 Ri = NPPi * Frac_PP_Z
 Ci = (Ri*0.1) * taxo_ratio
@@ -82,7 +80,6 @@ sigma2 = 10
 alphaL = np.arange(0.05, 0.8, 0.06)
 betaL = np.arange(8e-3, 1, 0.1)
 sizeL = np.arange(20, 85, 3)
-#sizeL_fish = np.arange(20, 85, 5)
 
 coef_fish_alphaL = np.arange(2, 5.5, 0.2) # for fish 20-80mm
 coef_crust_alphaL = np.arange(0.5, 3, 0.08) #for crust 10-50mm
